@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'groovy'
+    id 'application'
+}
+
+group 'org.kern'
+version '0.0.1'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/info.picocli/picocli
+    compile group: 'info.picocli', name: 'picocli', version: '3.7.0'
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.4'
+
+    // https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all
+    testCompile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.5.3', ext: 'pom'
+    // https://mvnrepository.com/artifact/org.spockframework/spock-core
+    testCompile group: 'org.spockframework', name: 'spock-core', version: '1.2-groovy-2.5'
+
+}
+
+mainClassName = 'org.kern.wtc.App'
+
+jar {
+    manifest{
+        attributes "Main-Class" : mainClassName
+    }
+
+    from configurations.compile.collect {it.isDirectory() ? it : zipTree(it)}
+}
