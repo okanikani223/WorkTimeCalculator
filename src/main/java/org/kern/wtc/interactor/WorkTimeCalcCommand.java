@@ -50,6 +50,7 @@ public class WorkTimeCalcCommand implements ICommand, Callable<Void> {
                                           .amountOfRoundUnit(amountOfRoundUnit)
                                           .fixedWorkTime(Duration.ofMinutes((long)(fixedWorkTime * 60)))
                                           .durationOfBreakTime(Duration.ofMinutes(durationOfBreakTime * 60))
+                                          .workDays(works)
                                           .build();
 
         CalculatedResult result = calculator.calc();
